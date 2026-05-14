@@ -43,7 +43,7 @@ gem "thruster", require: false
 gem "image_processing", "~> 1.2"
 
 # The CMS we're demoing. Pinned to GitHub until we cut the v0.2.3 RubyGems release.
-gem "lean_cms", github: "Ovrland-Services/lean-cms", branch: "feat/lean-cms-loader-service"
+gem "lean_cms", github: "Ovrland-Services/lean-cms", branch: "main"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
