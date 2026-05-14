@@ -1,3 +1,8 @@
+<%# Only shown to anonymous visitors. Signed-in editors see the admin bar
+    instead, which carries the same Sign Out + dashboard affordances; the
+    reset cadence is repeated in the footer for editors who want a reminder. %>
+<% return if current_user&.has_any_cms_permission? %>
+
 <div class="bg-brand-ink text-brand-bg/90 text-sm">
   <div class="max-w-6xl mx-auto px-4 py-2.5 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
     <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
@@ -8,14 +13,12 @@
       </span>
     </div>
     <div class="flex items-center gap-2 text-xs">
-      <% unless current_user&.has_any_cms_permission? %>
-        <span class="text-brand-bg/70">Sign in to edit:</span>
-        <code class="font-mono bg-white/5 px-1.5 py-0.5 rounded">demo@leancms.dev</code>
-        <span class="text-brand-bg/50">/</span>
-        <code class="font-mono bg-white/5 px-1.5 py-0.5 rounded">demo123</code>
-        <%= link_to "Sign in →", lean_cms_new_session_path,
-              class: "underline underline-offset-2 hover:text-brand-accent ml-1" %>
-      <% end %>
+      <span class="text-brand-bg/70">Sign in to edit:</span>
+      <code class="font-mono bg-white/5 px-1.5 py-0.5 rounded">demo@leancms.dev</code>
+      <span class="text-brand-bg/50">/</span>
+      <code class="font-mono bg-white/5 px-1.5 py-0.5 rounded">demo123</code>
+      <%= link_to "Sign in →", lean_cms_new_session_path,
+            class: "underline underline-offset-2 hover:text-brand-accent ml-1" %>
     </div>
   </div>
 </div>
