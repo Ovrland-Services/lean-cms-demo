@@ -27,5 +27,10 @@
 
 /public/assets
 
+# Compiled asset builds (Tailwind output, engine bundles, etc).
+# Regenerated on every `tailwindcss:build` and during Docker image build.
+/app/assets/builds/*
+!/app/assets/builds/.keep
+
 # Ignore master key for decrypting credentials and more.
 /config/master.key
