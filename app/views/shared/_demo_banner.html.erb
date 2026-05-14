@@ -8,12 +8,7 @@
       </span>
     </div>
     <div class="flex items-center gap-2 text-xs">
-      <% if current_user.present? %>
-        <span class="text-brand-bg/70">Signed in as <%= current_user.email_address %></span>
-        <%= button_to "Sign out", lean_cms_login_path, method: :delete,
-              form: { class: "inline" },
-              class: "underline underline-offset-2 hover:text-brand-accent" %>
-      <% else %>
+      <% unless current_user&.has_any_cms_permission? %>
         <span class="text-brand-bg/70">Sign in to edit:</span>
         <code class="font-mono bg-white/5 px-1.5 py-0.5 rounded">demo@leancms.dev</code>
         <span class="text-brand-bg/50">/</span>

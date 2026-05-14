@@ -23,7 +23,8 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="bg-brand-bg text-brand-ink font-sans antialiased">
+  <body class="bg-brand-bg text-brand-ink font-sans antialiased <%= 'pt-10' if current_user&.has_any_cms_permission? %>">
+    <%= render "lean_cms/shared/admin_bar" %>
     <%= render "shared/demo_banner" %>
 
     <header class="border-b border-brand-rule">
