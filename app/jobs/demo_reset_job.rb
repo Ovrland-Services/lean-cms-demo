@@ -4,30 +4,20 @@ class DemoResetJob < ApplicationJob
   # Hourly reset for the public demo. Wipes all PageContent rows and reseeds
   # from config/lean_cms_structure.yml so the next visitor sees a clean site.
   # Scheduled via config/recurring.yml at the top of every hour.
-  #
-  # Solid Queue worker processes don't load Rake tasks the way `bin/rails`
-  # does, so we have to load the gem's tasks file ourselves and use
-  # task.reenable so subsequent runs in the same worker process re-invoke
-  # cleanly (Rake#invoke is one-shot by default).
   def perform
     Rails.logger.info("[DemoResetJob] starting reset at #{Time.current.utc}")
 
-    require "rake"
-
     LeanCms::PageContent.delete_all
+    result = LeanCms::Loader.new(logger: Rails.logger).load!
 
-    unless Rake::Task.task_defined?("lean_cms:load_structure")
-      Rails.application.load_tasks
-      load LeanCms::Engine.root.join("lib/tasks/lean_cms.rake")
-    end
+    # page_content / page_section / page_structure helpers in LeanCms cache
+    # for 1 hour. After a reset we want visitors to see the reseeded values
+    # immediately — and any stale entries from broken previous runs need to
+    # go too. Clear the whole Rails cache; solid_cache rebuilds cheaply.
+    Rails.cache.clear
 
-    task = Rake::Task["lean_cms:load_structure"]
-    task.reenable
-    task.invoke
-
-    count = LeanCms::PageContent.count
-    Rails.logger.info("[DemoResetJob] reset complete, #{count} records")
-    raise "DemoResetJob seeded zero records — load_structure ran but produced nothing" if count.zero?
+    Rails.logger.info("[DemoResetJob] reset complete — created=#{result.created} updated=#{result.updated} skipped=#{result.skipped}")
+    raise "DemoResetJob seeded zero records" if result.created.zero? && result.updated.zero?
   rescue => e
     Rails.logger.error("[DemoResetJob] reset failed: #{e.class}: #{e.message}\n#{e.backtrace&.first(8)&.join("\n")}")
     raise
