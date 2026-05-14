@@ -1,0 +1,62 @@
+# Name of your application. Used to uniquely configure containers.
+service: lean-cms-demo
+
+# Name of the container image.
+image: mjthompsgb/lean-cms-demo
+
+# Dedicated DigitalOcean droplet for the public Lean CMS demo — segregated
+# from production sites so demo visitors editing as `demo@leancms.dev`
+# can't reach anything important.
+servers:
+  web:
+    - 104.131.165.80
+
+ssh:
+  keys: [ "~/.ssh/lean_cms_demo" ]
+
+# Enable SSL auto certification via Let's Encrypt for demo.leancms.dev.
+proxy:
+  ssl: true
+  host: demo.leancms.dev
+  healthcheck:
+    path: /up
+    interval: 3
+    timeout: 10
+
+deploy_timeout: 120
+drain_timeout: 30
+
+# GitHub Container Registry — same account/registry as CAS.
+registry:
+  server: ghcr.io
+  username: mjthompsgb
+  password:
+    - KAMAL_REGISTRY_PASSWORD
+
+# Inject ENV variables into containers (secrets come from .kamal/secrets).
+env:
+  secret:
+    - RAILS_MASTER_KEY
+  clear:
+    # Run the Solid Queue supervisor inside Puma so the hourly DemoResetJob
+    # has a worker without a separate jobs container.
+    SOLID_QUEUE_IN_PUMA: true
+
+aliases:
+  console: app exec --interactive --reuse "bin/rails console"
+  shell:   app exec --interactive --reuse "bash"
+  logs:    app logs -f
+  dbc:     app exec --interactive --reuse "bin/rails dbconsole"
+  # Force a manual demo reset (otherwise runs hourly at minute 00).
+  reset:   app exec "bin/rails runner 'DemoResetJob.perform_now'"
+
+# Persistent SQLite volume — holds app data + Solid Queue tables + Active
+# Storage blobs in one file (see config/database.yml).
+volumes:
+  - "lean_cms_demo_storage:/rails/storage"
+
+# Bridge fingerprinted assets between versions to avoid in-flight 404s.
+asset_path: /rails/public/assets
+
+builder:
+  arch: amd64

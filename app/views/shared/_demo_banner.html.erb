@@ -1,0 +1,26 @@
+<div class="bg-brand-ink text-brand-bg/90 text-sm">
+  <div class="max-w-6xl mx-auto px-4 py-2.5 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+    <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+      <span class="font-semibold text-brand-accent">Lean CMS demo</span>
+      <span class="text-brand-bg/70">
+        Content resets every hour on the hour
+        (<%= next_reset_at.strftime("%H:%M UTC") %>, in <%= time_until_next_reset %>).
+      </span>
+    </div>
+    <div class="flex items-center gap-2 text-xs">
+      <% if current_user.present? %>
+        <span class="text-brand-bg/70">Signed in as <%= current_user.email_address %></span>
+        <%= button_to "Sign out", lean_cms_login_path, method: :delete,
+              form: { class: "inline" },
+              class: "underline underline-offset-2 hover:text-brand-accent" %>
+      <% else %>
+        <span class="text-brand-bg/70">Sign in to edit:</span>
+        <code class="font-mono bg-white/5 px-1.5 py-0.5 rounded">demo@leancms.dev</code>
+        <span class="text-brand-bg/50">/</span>
+        <code class="font-mono bg-white/5 px-1.5 py-0.5 rounded">demo123</code>
+        <%= link_to "Sign in →", lean_cms_new_session_path,
+              class: "underline underline-offset-2 hover:text-brand-accent ml-1" %>
+      <% end %>
+    </div>
+  </div>
+</div>

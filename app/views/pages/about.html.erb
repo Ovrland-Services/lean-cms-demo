@@ -1,0 +1,29 @@
+<% content_for :title, "About — Slothback Outfitters" %>
+
+<%= cms_editable_section(page: @page, section: "story") do %>
+  <section class="bg-brand-bg">
+    <div class="max-w-3xl mx-auto px-4 py-20 md:py-24">
+      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-brand-primary">
+        <%= editable_content("story", "eyebrow") %>
+      </p>
+      <h1 class="mt-4 text-4xl md:text-5xl font-extrabold tracking-tight leading-tight">
+        <%= editable_content("story", "heading") %>
+      </h1>
+      <div class="mt-8 text-lg text-brand-ink-soft space-y-4 prose-base">
+        <%= editable_content("story", "body") %>
+      </div>
+    </div>
+  </section>
+<% end %>
+
+<%= cms_editable_section(page: @page, section: "principles") do %>
+  <section class="border-t border-brand-rule bg-white">
+    <div class="max-w-3xl mx-auto px-4 py-20">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight">
+        <%= editable_content("principles", "heading") %>
+      </h2>
+
+      <%= bullets_section("principles") %>
+    </div>
+  </section>
+<% end %>

@@ -1,0 +1,220 @@
+# Demo content structure for Slothback Outfitters — a fictional overland
+# adventure outfitter that doubles as a Lean CMS showcase.
+#
+# Edits made through the /lean-cms admin survive until the top of the next
+# hour, when the demo reset job (DemoResetJob) reverts back to these defaults.
+
+pages:
+  home:
+    display_title: "Home"
+    page_order: 1
+    sections:
+      hero:
+        display_title: "Hero"
+        section_order: 1
+        fields:
+          eyebrow:
+            type: text
+            label: "Eyebrow Text"
+            default: "Slow travel. Big country."
+          heading:
+            type: text
+            label: "Heading"
+            default: "Overland trips that don't rush the good parts."
+          subheading:
+            type: text
+            label: "Subheading"
+            default: "Guided routes through the American West, the Baja peninsula, and the eastern Rockies — built around long horizons, hot meals, and quiet mornings."
+          cta_label:
+            type: text
+            label: "CTA Button Text"
+            default: "See upcoming trips"
+          cta_url:
+            type: url
+            label: "CTA Button URL"
+            default: "/trips"
+
+      promise:
+        display_title: "What We Do Differently"
+        section_order: 2
+        fields:
+          heading:
+            type: text
+            label: "Section Heading"
+            default: "Trips built for the long view"
+          intro:
+            type: rich_text
+            label: "Intro Paragraph"
+            default: "<p>We plan around landscapes, not itineraries. Every Slothback route leaves space for the side road, the second cup of coffee, and the storm that pushes camp a day later than planned.</p>"
+        cards:
+          type: cards
+          max_cards: 3
+          items:
+            - icon: "compass"
+              icon_color: "#fdfaf6"
+              bg_color: "#b82025"
+              heading: "Routed with intent"
+              text: "Two years of route notes per trip, refined on every run. You see the country, not the gas stations."
+              alignment: "left"
+            - icon: "users"
+              icon_color: "#1a1f2e"
+              bg_color: "#f5c84b"
+              heading: "Small groups"
+              text: "Six rigs maximum. Big enough for safety in remote terrain, small enough that nobody eats last."
+              alignment: "left"
+            - icon: "tent"
+              icon_color: "#fdfaf6"
+              bg_color: "#1a1f2e"
+              heading: "Everything included"
+              text: "Camp kitchen, recovery gear, satellite comms, and a guide who's slept under more stars than streetlights."
+              alignment: "left"
+
+      featured_trip:
+        display_title: "Featured Trip"
+        section_order: 3
+        fields:
+          eyebrow:
+            type: text
+            label: "Eyebrow"
+            default: "Trip Spotlight · 7 days"
+          heading:
+            type: text
+            label: "Heading"
+            default: "Cathedral Rim — Wyoming high country"
+          body:
+            type: rich_text
+            label: "Description"
+            default: "<p>A week-long loop through the Wind River and Absaroka ranges. Hot springs on day three, an alpine pass on day five, and one night where the sky does the heavy lifting.</p>"
+          cta_label:
+            type: text
+            label: "CTA Text"
+            default: "Read trip details"
+          cta_url:
+            type: url
+            label: "CTA URL"
+            default: "/trips"
+
+  about:
+    display_title: "About"
+    page_order: 2
+    sections:
+      story:
+        display_title: "Our Story"
+        section_order: 1
+        fields:
+          eyebrow:
+            type: text
+            label: "Eyebrow"
+            default: "Since 2014"
+          heading:
+            type: text
+            label: "Heading"
+            default: "Started in a driveway in Boulder."
+          body:
+            type: rich_text
+            label: "Body"
+            default: "<p>Slothback grew out of a habit of taking the long way back from anywhere. A decade later we're running guided routes for travelers who'd rather measure a trip in chapters than in miles.</p><p>We're independent, debt-free, and small on purpose. The same three guides have run every trip since 2019. Every rig is owned outright, maintained in-house, and named after a national park.</p>"
+
+      principles:
+        display_title: "What We Believe"
+        section_order: 2
+        fields:
+          heading:
+            type: text
+            label: "Section Heading"
+            default: "Four things we won't compromise on"
+        bullets:
+          type: bullets
+          max_items: 8
+          items:
+            - "Leave it cleaner than you found it. We pack out every scrap, including other people's."
+            - "Local first. Fuel, food, and lodging dollars stay in the towns we pass through."
+            - "Slow is a feature. Twelve-hour driving days defeat the purpose of being out here."
+            - "Story over schedule. If the weather is good and the light is great, the plan can wait."
+
+  trips:
+    display_title: "Trips"
+    page_order: 3
+    sections:
+      hero:
+        display_title: "Trips Hero"
+        section_order: 1
+        fields:
+          eyebrow:
+            type: text
+            label: "Eyebrow"
+            default: "2026 Season"
+          heading:
+            type: text
+            label: "Heading"
+            default: "Four routes. Twelve seats per route."
+          subheading:
+            type: text
+            label: "Subheading"
+            default: "Every trip runs twice — once in the shoulder season, once at peak. Pick your weather, pick your pace."
+
+      offerings:
+        display_title: "Trip Offerings"
+        section_order: 2
+        fields:
+          heading:
+            type: text
+            label: "Section Heading"
+            default: "This year's routes"
+        cards:
+          type: cards
+          max_cards: 6
+          items:
+            - icon: "mountain"
+              icon_color: "#fdfaf6"
+              bg_color: "#b82025"
+              heading: "Cathedral Rim — 7 days"
+              text: "Wind River + Absaroka loop. Alpine passes, hot springs, ghost town overnight."
+              alignment: "left"
+            - icon: "sun"
+              icon_color: "#1a1f2e"
+              bg_color: "#f5c84b"
+              heading: "Baja Slow Road — 10 days"
+              text: "San Felipe down to Cabo Pulmo. Mostly coastline, mostly fish tacos."
+              alignment: "left"
+            - icon: "tree"
+              icon_color: "#fdfaf6"
+              bg_color: "#1a1f2e"
+              heading: "Olympic Coast — 5 days"
+              text: "Rainforest two-tracks and Pacific cliffs. Best run in the rain — bring better boots."
+              alignment: "left"
+            - icon: "moon"
+              icon_color: "#fdfaf6"
+              bg_color: "#4a5568"
+              heading: "Mojave Dark Sky — 4 days"
+              text: "A short trip built around three new-moon nights. Optional astrophotography workshop."
+              alignment: "left"
+
+  contact:
+    display_title: "Contact"
+    page_order: 4
+    sections:
+      info:
+        display_title: "Get In Touch"
+        section_order: 1
+        fields:
+          heading:
+            type: text
+            label: "Heading"
+            default: "Plan a trip, ask a question, or just say hi."
+          intro:
+            type: rich_text
+            label: "Intro"
+            default: "<p>We answer everything within a business day. Bookings open four months out for shoulder season runs and six months out for peak — get on the list if you'd like first crack.</p>"
+          email:
+            type: text
+            label: "Contact Email"
+            default: "hello@slothback.example"
+          phone:
+            type: text
+            label: "Contact Phone"
+            default: "(720) 555-0182"
+          hours:
+            type: text
+            label: "Office Hours"
+            default: "Mon–Thu, 9–5 MT. Out on routes Fridays."

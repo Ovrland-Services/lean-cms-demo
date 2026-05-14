@@ -1,0 +1,18 @@
+# Recurring Solid Queue tasks for the Lean CMS demo site. The schedule
+# strings use fugit syntax (https://github.com/floraison/fugit).
+
+shared: &shared
+  demo_reset:
+    class: DemoResetJob
+    schedule: every hour at minute 0
+    description: "Wipe + reseed PageContent so demo visitors start clean each hour"
+
+  clear_solid_queue_finished_jobs:
+    command: "SolidQueue::Job.clear_finished_in_batches(sleep_between_batches: 0.3)"
+    schedule: every hour at minute 12
+
+production:
+  <<: *shared
+
+development:
+  <<: *shared

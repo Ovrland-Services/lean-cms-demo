@@ -1,0 +1,58 @@
+<%= cms_editable_section(page: @page, section: "hero") do %>
+  <section class="bg-brand-bg">
+    <div class="max-w-6xl mx-auto px-4 py-20 md:py-28">
+      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-brand-primary">
+        <%= editable_content("hero", "eyebrow") %>
+      </p>
+      <h1 class="mt-4 text-4xl md:text-6xl font-extrabold tracking-tight leading-[1.05] max-w-3xl">
+        <%= editable_content("hero", "heading") %>
+      </h1>
+      <p class="mt-6 text-lg md:text-xl text-brand-ink-soft max-w-2xl">
+        <%= editable_content("hero", "subheading") %>
+      </p>
+      <div class="mt-9">
+        <%= link_to page_content(@page, "hero", "cta_label"),
+              page_content(@page, "hero", "cta_url"),
+              class: "inline-flex items-center gap-2 bg-brand-primary text-white px-6 py-3 rounded-md font-semibold hover:bg-brand-primary-d transition-colors" %>
+      </div>
+    </div>
+  </section>
+<% end %>
+
+<%= cms_editable_section(page: @page, section: "promise") do %>
+  <section class="border-t border-brand-rule bg-white">
+    <div class="max-w-6xl mx-auto px-4 py-20">
+      <div class="max-w-3xl">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight">
+          <%= editable_content("promise", "heading") %>
+        </h2>
+        <div class="mt-5 text-lg text-brand-ink-soft prose-base">
+          <%= editable_content("promise", "intro") %>
+        </div>
+      </div>
+
+      <%= cards_section("promise", grid_cols: 3) %>
+    </div>
+  </section>
+<% end %>
+
+<%= cms_editable_section(page: @page, section: "featured_trip") do %>
+  <section class="bg-brand-ink text-brand-bg">
+    <div class="max-w-6xl mx-auto px-4 py-20">
+      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-brand-accent">
+        <%= editable_content("featured_trip", "eyebrow") %>
+      </p>
+      <h2 class="mt-4 text-3xl md:text-5xl font-bold tracking-tight max-w-3xl">
+        <%= editable_content("featured_trip", "heading") %>
+      </h2>
+      <div class="mt-5 text-lg text-brand-bg/80 max-w-3xl prose-base prose-invert">
+        <%= editable_content("featured_trip", "body") %>
+      </div>
+      <div class="mt-8">
+        <%= link_to page_content(@page, "featured_trip", "cta_label"),
+              page_content(@page, "featured_trip", "cta_url"),
+              class: "inline-flex items-center gap-2 bg-brand-accent text-brand-ink px-6 py-3 rounded-md font-semibold hover:brightness-95 transition-all" %>
+      </div>
+    </div>
+  </section>
+<% end %>

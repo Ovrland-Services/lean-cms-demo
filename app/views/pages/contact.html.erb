@@ -1,0 +1,29 @@
+<% content_for :title, "Contact — Slothback Outfitters" %>
+
+<%= cms_editable_section(page: @page, section: "info") do %>
+  <section class="bg-brand-bg">
+    <div class="max-w-3xl mx-auto px-4 py-20 md:py-24">
+      <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight">
+        <%= editable_content("info", "heading") %>
+      </h1>
+      <div class="mt-6 text-lg text-brand-ink-soft prose-base">
+        <%= editable_content("info", "intro") %>
+      </div>
+
+      <dl class="mt-10 grid gap-5 sm:grid-cols-2 text-base">
+        <div class="rounded-lg border border-brand-rule bg-white p-5">
+          <dt class="text-xs font-semibold uppercase tracking-wide text-brand-muted">Email</dt>
+          <dd class="mt-1 font-medium text-brand-ink"><%= editable_content("info", "email") %></dd>
+        </div>
+        <div class="rounded-lg border border-brand-rule bg-white p-5">
+          <dt class="text-xs font-semibold uppercase tracking-wide text-brand-muted">Phone</dt>
+          <dd class="mt-1 font-medium text-brand-ink"><%= editable_content("info", "phone") %></dd>
+        </div>
+        <div class="rounded-lg border border-brand-rule bg-white p-5 sm:col-span-2">
+          <dt class="text-xs font-semibold uppercase tracking-wide text-brand-muted">Hours</dt>
+          <dd class="mt-1 font-medium text-brand-ink"><%= editable_content("info", "hours") %></dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+<% end %>

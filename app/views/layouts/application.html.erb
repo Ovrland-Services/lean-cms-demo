@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title><%= content_for(:title) || "Slothback Outfitters — Lean CMS demo" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="<%= content_for(:description) || 'Lean CMS demo site — an example marketing page powered by the lean_cms Rails gem.' %>">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="icon" type="image/png" sizes="16x16" href="<%= asset_path('lean_cms/sloth-favicon-16.png') %>">
+    <link rel="icon" type="image/png" sizes="32x32" href="<%= asset_path('lean_cms/sloth-favicon-32.png') %>">
+    <link rel="icon" type="image/png" sizes="64x64" href="<%= asset_path('lean_cms/sloth-favicon-64.png') %>">
+    <link rel="apple-touch-icon" href="<%= asset_path('lean_cms/sloth-favicon-64.png') %>">
+
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "lean_cms/cms_edit_controls", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="bg-brand-bg text-brand-ink font-sans antialiased">
+    <%= render "shared/demo_banner" %>
+
+    <header class="border-b border-brand-rule">
+      <div class="max-w-6xl mx-auto px-4 py-5 flex items-center justify-between">
+        <%= link_to root_path, class: "flex items-center gap-3 group" do %>
+          <%= image_tag "lean_cms/sloth-logo.png", alt: "Slothback Outfitters",
+                class: "h-9 w-9 rounded-md" %>
+          <span class="text-xl font-bold tracking-tight">Slothback Outfitters</span>
+        <% end %>
+
+        <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-brand-ink-soft">
+          <%= link_to "Home",    root_path,    class: nav_link_classes(current_page?(root_path)) %>
+          <%= link_to "About",   about_path,   class: nav_link_classes(current_page?(about_path)) %>
+          <%= link_to "Trips",   trips_path,   class: nav_link_classes(current_page?(trips_path)) %>
+          <%= link_to "Contact", contact_path, class: nav_link_classes(current_page?(contact_path)) %>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <%= yield %>
+    </main>
+
+    <footer class="mt-24 border-t border-brand-rule bg-white">
+      <div class="max-w-6xl mx-auto px-4 py-10 grid gap-6 sm:grid-cols-3 text-sm text-brand-ink-soft">
+        <div>
+          <div class="font-semibold text-brand-ink">Slothback Outfitters</div>
+          <p class="mt-1">A fictional overland outfitter. Every word here is editable through the Lean CMS demo at <code class="text-xs">/lean-cms</code>.</p>
+        </div>
+        <div>
+          <div class="font-semibold text-brand-ink">Demo</div>
+          <ul class="mt-1 space-y-1">
+            <li><%= link_to "Try the editor", lean_cms_new_session_path, class: "hover:text-brand-primary" %></li>
+            <li>Resets hourly at <code class="text-xs">:00 UTC</code></li>
+          </ul>
+        </div>
+        <div>
+          <div class="font-semibold text-brand-ink">About Lean CMS</div>
+          <ul class="mt-1 space-y-1">
+            <li><%= link_to "Documentation", "https://leancms.dev", class: "hover:text-brand-primary", target: "_blank", rel: "noopener" %></li>
+            <li><%= link_to "GitHub", "https://github.com/Ovrland-Services/lean-cms", class: "hover:text-brand-primary", target: "_blank", rel: "noopener" %></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
