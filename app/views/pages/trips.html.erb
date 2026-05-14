@@ -23,7 +23,9 @@
         <%= editable_content("offerings", "heading") %>
       </h2>
 
-      <%= cards_section("offerings", grid_cols: 2) %>
+      <div class="mt-10">
+        <%= cards_section("offerings", grid_cols: 2, gap: 6) %>
+      </div>
     </div>
   </section>
 <% end %>

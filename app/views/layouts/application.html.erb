@@ -48,7 +48,7 @@
       <%= yield %>
     </main>
 
-    <footer class="mt-24 border-t border-brand-rule bg-white">
+    <footer class="border-t border-brand-rule bg-white">
       <div class="max-w-6xl mx-auto px-4 py-10 grid gap-6 sm:grid-cols-3 text-sm text-brand-ink-soft">
         <div>
           <div class="font-semibold text-brand-ink">Slothback Outfitters</div>
@@ -67,6 +67,23 @@
             <li><%= link_to "Documentation", "https://leancms.dev", class: "hover:text-brand-primary", target: "_blank", rel: "noopener" %></li>
             <li><%= link_to "GitHub", "https://github.com/Ovrland-Services/lean-cms", class: "hover:text-brand-primary", target: "_blank", rel: "noopener" %></li>
           </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-brand-rule">
+        <div class="max-w-6xl mx-auto px-4 py-5 flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between text-xs text-brand-muted">
+          <div>
+            Website by
+            <%= link_to "Ovrland Services LLC", "https://ovrlandservices.com",
+                  class: "hover:text-brand-primary",
+                  target: "_blank", rel: "noopener" %>
+          </div>
+          <div>
+            Powered by
+            <%= link_to "Lean CMS", "https://leancms.dev",
+                  class: "hover:text-brand-primary",
+                  target: "_blank", rel: "noopener" %>
+          </div>
         </div>
       </div>
     </footer>
