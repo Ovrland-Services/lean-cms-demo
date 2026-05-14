@@ -1,0 +1,43 @@
+<% content_for :title, "Sign in to the Lean CMS demo" %>
+
+<div style="background: #fef3c7; border: 1px solid #f5c84b; border-radius: 8px;
+            padding: 14px 16px; margin-bottom: 20px; font-size: 14px;
+            color: #1a1f2e; line-height: 1.5;">
+  <div style="font-weight: 600; margin-bottom: 4px;">
+    Demo credentials — pre-filled for you
+  </div>
+  <div style="color: #4a5568;">
+    Email <code style="background: rgba(0,0,0,.06); padding: 1px 5px; border-radius: 3px;">demo@leancms.dev</code>
+    · Password <code style="background: rgba(0,0,0,.06); padding: 1px 5px; border-radius: 3px;">demo123</code>
+  </div>
+  <div style="color: #6b7280; font-size: 12.5px; margin-top: 6px;">
+    Content edits revert at the top of every hour.
+  </div>
+</div>
+
+<h1 class="lc-auth-title">Sign in</h1>
+
+<%= form_with url: lean_cms_session_path, class: "lc-auth-form" do |form| %>
+  <div class="lc-auth-field">
+    <%= form.label :email_address, "Email address" %>
+    <%= form.email_field :email_address,
+          required: true, autofocus: true, autocomplete: "username",
+          placeholder: "you@example.com",
+          value: params[:email_address].presence || "demo@leancms.dev",
+          class: "lc-auth-input" %>
+  </div>
+
+  <div class="lc-auth-field">
+    <%= form.label :password, "Password" %>
+    <%= form.password_field :password,
+          required: true, autocomplete: "current-password",
+          placeholder: "Enter your password",
+          maxlength: 72,
+          value: "demo123",
+          class: "lc-auth-input" %>
+  </div>
+
+  <div class="lc-auth-actions">
+    <%= form.submit "Sign in", class: "lc-auth-btn" %>
+  </div>
+<% end %>
