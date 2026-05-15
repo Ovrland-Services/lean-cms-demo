@@ -21,6 +21,11 @@
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "lean_cms/cms_edit_controls", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
+    <%# GA4 tag — measurement ID configured at /lean-cms/settings under
+        the key `google_analytics_id`. Returns "" when blank, so leaving
+        the setting unset cleanly disables tracking. %>
+    <%= cms_google_analytics_tag %>
   </head>
 
   <body class="bg-brand-bg text-brand-ink font-sans antialiased <%= 'pt-20' if current_user&.has_any_cms_permission? %>">

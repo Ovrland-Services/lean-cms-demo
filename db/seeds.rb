@@ -28,3 +28,8 @@ User.find_or_initialize_by(email_address: "demo@leancms.dev").tap do |u|
   u.can_access_settings  = false
   u.save!
 end
+
+# GA4 measurement ID — same property as the docs site so leancms.dev +
+# demo.leancms.dev show up as one funnel in GA4 (filter by hostname in
+# reports). The helper is a no-op when this is blank.
+LeanCms::Setting.set("google_analytics_id", "G-J5BHN1GD94")
